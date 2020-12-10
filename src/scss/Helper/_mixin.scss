@@ -12,6 +12,15 @@
     @warn "Không tìm thấy!";
   }
 }
+@mixin circle($size) {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - #{$size/2});
+  top: calc(50% - #{$size/2});
+  width: $size;
+  height: $size;
+}
 
 @mixin navigation() {
   text-decoration: none;
@@ -48,47 +57,46 @@
 @mixin reponsiveMax($screen) {
   // map: duyệt mảng
   @if map-has-key($map: $breakpoints, $key: $screen) {
-      $value: map-get(
-          $map: $breakpoints,
-          $key: $screen,
-      );
-      @media screen and (max-width: $value) {
-          @content;
-      }
+    $value: map-get(
+      $map: $breakpoints,
+      $key: $screen,
+    );
+    @media screen and (max-width: $value) {
+      @content;
+    }
   } @else {
-      @warn "Không tìm thấy!";
+    @warn "Không tìm thấy!";
   }
 }
 @mixin reponsiveMin($screen) {
   // map: duyệt mảng
   @if map-has-key($map: $breakpoints, $key: $screen) {
-      $value: map-get(
-          $map: $breakpoints,
-          $key: $screen,
-      );
-      @media screen and (min-width: $value) {
-          @content;
-      }
+    $value: map-get(
+      $map: $breakpoints,
+      $key: $screen,
+    );
+    @media screen and (min-width: $value) {
+      @content;
+    }
   } @else {
-      @warn "Không tìm thấy!";
+    @warn "Không tìm thấy!";
   }
 }
 @mixin between-sizes($lower, $upper) {
   //Kiểm tra breakpoint truyền vào có tồn tại như bạn đã định nghĩa hay không.
   @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
-      // Lấy giá trị pixel breakpoint đó
-      $lower-breakpoint: map-get($breakpoints, $lower);
-      $upper-breakpoint: map-get($breakpoints, $upper);
+    // Lấy giá trị pixel breakpoint đó
+    $lower-breakpoint: map-get($breakpoints, $lower);
+    $upper-breakpoint: map-get($breakpoints, $upper);
 
-      //Build media query tự động
-      @media screen and (min-width: $lower-breakpoint) and (max-width: $upper-breakpoint) {
-          @content;
-      }
+    //Build media query tự động
+    @media screen and (min-width: $lower-breakpoint) and (max-width: $upper-breakpoint) {
+      @content;
+    }
   } @else {
-      //Build media query tự động
-      @media screen and (min-width: $lower) and (max-width: $upper) {
-          @content;
-      }
+    //Build media query tự động
+    @media screen and (min-width: $lower) and (max-width: $upper) {
+      @content;
+    }
   }
 }
-

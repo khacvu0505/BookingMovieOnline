@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import NavbarUser from "./../components/Navbar";
 
 function HomeLayout(props) {
-  if (props.children.props.location.pathname == "/detail-ticketroom") {
+  if (props.children.props.location.pathname === "/detail-ticketroom") {
     return (
       <div>
         {props.children}
@@ -26,7 +26,7 @@ export default function HomeTemplate({ Component, ...props }) {
       {...props}
       render={(propsComponent) => {
 
-        if (propsComponent.match.path == "/") {
+        if (propsComponent.match.path === "/" || propsComponent.match.path === "/detailMovie/:id") {
           return (
             <HomeLayout>
               <Component {...propsComponent} />

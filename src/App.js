@@ -1,7 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import AuthHome from "./components/Auth";
 
 
 import PageNotFound from "./containers/PageNotDefault";
@@ -14,13 +12,12 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import HomeTemplate from "./templates/HomeTemplate";
 import AdminTemplate from "./templates/AdminTemplate";
-
-
+import AuthHome from "./components/Auth";
 import SignUp from "../src/components/SignUp";
-// import SignUp from "../src/components/SignUp";
-// import DetailTicketRoom from "../src/components/DetailTicketRoom";
 
 function App() {
+
+
   const showMenuHome = (routes) => {
     // kt routes tồn tại và routes.length>0
     if (routes && routes.length > 0) {
@@ -31,6 +28,7 @@ function App() {
       })
     }
   }
+
   const showMenuAdmin = (routes) => {
     // kt routes tồn tại và routes.length>0
     if (routes && routes.length > 0) {
@@ -41,16 +39,17 @@ function App() {
       })
     }
   }
+
   return (
     <BrowserRouter>
       <Switch>
         {showMenuHome(routesHome)}
         {showMenuAdmin(routesAdmin)}
-
-        {/* <Route exact={true} path="/" component={HomePage} /> */}
+        {/* <Route exact={false} path="/auth" component={Auth} /> */}
         <Route exact={false} path="/sign-up" component={SignUp} />
         <Route exact={false} path="/auth-home" component={AuthHome} />
-        {/* <Route exact={false} path="/detail-ticketRoom" component={DetailTicketRoom} /> */}
+
+
         <Route path="" component={PageNotFound} />
       </Switch>
     </BrowserRouter>

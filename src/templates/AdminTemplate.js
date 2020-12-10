@@ -5,7 +5,6 @@ import { Route, Redirect } from "react-router-dom";
 function AdminLayout(props) {
   return (
     <div>
-      <div>Navbar Admin</div>
       {props.children}
     </div>
   )
@@ -23,7 +22,7 @@ export default function AdminTemplate({ Component, ...props }) {
             </AdminLayout>
           )
         }
-        return <Redirect to="/auth" />
+        return <Redirect to="/auth-home" />
 
       }}
     />

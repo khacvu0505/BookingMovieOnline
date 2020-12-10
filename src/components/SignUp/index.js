@@ -65,11 +65,11 @@ function SignUp(props) {
   }
   let validate = (name, value) => {
     let errormessage = "";
-    if (name == "taiKhoan")
+    if (name === "taiKhoan")
       errormessage = !value ? "Tài khoản không để bỏ trống" : "";
-    if (name == "matKhau")
+    if (name === "matKhau")
       errormessage = !value ? "Mật khẩu không được để trống" : "";
-    if (name == "email") {
+    if (name === "email") {
       if (!value) {
         errormessage = "Email không để bỏ trống";
       } else {
@@ -77,13 +77,13 @@ function SignUp(props) {
         errormessage = !isValid ? "Email không hợp lệ" : "";
       }
     }
-    if (name == "hoTen") {
+    if (name === "hoTen") {
       if (!isNaN(value))
         errormessage = "Họ tên không được chứa kí tự số";
       else
         errormessage = !value ? "Họ tên không để bỏ trống" : "";
     }
-    if (name == "soDt") {
+    if (name === "soDt") {
       errormessage = !value ? "Số điện thoại không để bỏ trống" : "";
     }
     return errormessage;

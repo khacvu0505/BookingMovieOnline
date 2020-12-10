@@ -32,7 +32,6 @@
   <!-- Link Font AweSome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <link rel="stylesheet" href="./../src/scss/Vendor/Lity/lity.css">
-
 </head>
 
 <body>
@@ -55,20 +54,11 @@
     window.addEventListener("scroll", function () {
       var header = document.querySelector("header");
       header.classList.toggle("sticky", window.scrollY > 0);
-
-
       var eventt = document.getElementById("backtotop");
       eventt.classList.toggle("eventBackToTop", window.scrollY > 0);
     });
   </script>
 
-
-  <!-- <script type="text/javascript">
-    window.addEventListener("scroll", function () {
-      var eventt = document.querySelector("backtotop");
-      eventt.classList.toggle("eventBackToTop", window.scrollY > 0);
-    });
-  </script> -->
   <!-- slick slider -->
   <!-- <script>
     $('.img__app').slick({
@@ -77,7 +67,6 @@
         autoplaySpeed: 2000,
     });
   </script> -->
-
 
 
 </body>

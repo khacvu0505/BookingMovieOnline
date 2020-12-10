@@ -57,6 +57,7 @@
       padding: 0;
     }
     .logoRap {
+      width: 60px !important;
       @media screen and (max-width: 992px) {
         width: 25% !important;
       }
@@ -176,14 +177,14 @@
     width: 15px;
     height: 15px;
     border-radius: 4px;
-    border: 3px solid #ec7532;
+    background: #ec7532;
   }
   .status_gheDangChon {
     display: inline-block;
     width: 15px;
     height: 15px;
     border-radius: 4px;
-    background-color: #ec7532;
+    background-color: yellow;
   }
   .status_gheDaChon {
     display: inline-block;

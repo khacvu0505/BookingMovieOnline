@@ -19,12 +19,12 @@ export default function CarouselHomePage() {
   const photos = [
     {
       name: 'Photo 1',
-      url: './images/banner1.png',
+      url: './images/banner1.jpg',
       link: 'https://www.youtube.com/watch?v=XRm1P7oGpMQ&ab_channel=CJEntertainmentVietnam'
     },
     {
       name: 'Photo 2',
-      url: './images/banner2.png',
+      url: './images/banner2.jpg',
       link: 'https://www.youtube.com/watch?v=VAvF3VBxOac&feature=emb_logo'
     },
     {
@@ -34,7 +34,7 @@ export default function CarouselHomePage() {
     },
     {
       name: 'Photo 4',
-      url: './images/banner4.png',
+      url: './images/banner4.jpg',
       link: 'https://www.youtube.com/watch?v=Vgb1uUmpQNU&feature=emb_logo&ab_channel=LotteCinemaVietNam'
     }
   ]

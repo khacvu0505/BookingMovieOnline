@@ -1,6 +1,5 @@
 import React, { useEffect, useState, memo } from 'react';
 import { connect } from "react-redux";
-import { NavLink } from 'react-router-dom';
 // kb biến toàn cục
 var allowedState = [];
 var gheDangChon = [];
@@ -8,13 +7,10 @@ function SeatNormal(props) {
   const [seat, setSeat] = useState([]);
   const [chonGhe, setChon] = useState({});
   const [arrGheVip, setGheVip] = useState([]);
-  // const [price, setPrice] = useState(0);
   const handleChooseSeat = (temp) => {
-    // debugger
     // tìm vị trí phần tử
     if (!temp.daDat) {
       let index = seat.indexOf(temp);
-      // debugger
       if (temp.check === false) {
         temp.check = true;
         gheDangChon.push(temp);
@@ -25,7 +21,6 @@ function SeatNormal(props) {
       else {
         temp.check = false;
         let vt = gheDangChon.indexOf(temp);
-        // debugger
         gheDangChon.splice(vt, 1);
         if (index !== -1) {
           document.getElementsByClassName("btnGhe")[index].style.background = "#e03f0d";

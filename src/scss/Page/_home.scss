@@ -8,9 +8,10 @@
     cursor: pointer;
 
     opacity: 0;
-    /* làm ẩn luôn ,phím tắt nó k tab tới đc */
+    // / làm ẩn luôn ,phím tắt nó k tab tới đc /
     visibility: hidden;
     transition: all 0.5s;
+
     i {
       color: #ec7532;
       font-size: 37px;

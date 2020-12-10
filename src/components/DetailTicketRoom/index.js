@@ -1,12 +1,19 @@
-import React, { useState, useEffect, memo, useCallback } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { actFetchDetailRoomTicket } from "./modules/action";
 import { connect } from "react-redux";
 import SeatNormal from "../Seat/SeatNormal";
 import SeatVip from "../Seat/SeatVip";
-import { actFetchBookSeat } from "./modules2/actionBookSeat";
+import { actFetchBookSeat } from "./modules/actionBookSeat";
 import Swal from 'sweetalert2';
 import { useHistory } from "react-router-dom";
 import { Drawer } from "@material-ui/core";
+import Loading from "../Loading/loading";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Axios from "axios";
+import emailjs from "emailjs-com";
+import PayPal from "../PayPal";
+// import ShowLogoDetailTicketRoom from "../ShowLogoDeTailTicketRoom";
+
 var arrTemp = [];
 function DetailTicketRoom(props) {
   const [timeM, setTimeM] = useState(5);
@@ -16,6 +23,8 @@ function DetailTicketRoom(props) {
   const [priceChooSeat, setPriceChooseSeat] = useState(0);
   const [temp, setTemp] = useState(0);
   const [info, setInfo] = useState("");
+
+  const [url, setUrl] = useState("");
   // Material
   const [open, setOpen] = useState(false);
   const handleDrawer = () => {
@@ -23,15 +32,55 @@ function DetailTicketRoom(props) {
   }
   // End Material
 
+
+  // Start Send Email
+  function sendEmail() {
+
+    // emailjs.sendForm('gmail', 'template_0c38g8b', e.target, 'user_e2CQ4HQxr1VfsOKu6uvOF')
+    var templateParams = {
+      name: 'James',
+      notes: 'Check this out!'
+    };
+    // emailjs.send("khacvu0505@gmail.com", "template_0c38g8b")
+    emailjs.send("nkkhacvu32@gmail.com", "template_0c38g8b", templateParams, 'user_e2CQ4HQxr1VfsOKu6uvOF')
+      .then(function (response) {
+
+        console.log('SUCCESS!', response.status, response.text);
+      }, function (error) {
+
+        console.log('FAILED...', error);
+      });
+  }
+  // End Send Email
+
+
+
+  const ShowLogoFilm = (id) => {
+    Axios({
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap",
+      method: "GET",
+    })
+      .then(result => {
+        console.log(result.data);
+        let arr = result.data.find(item => {
+          return item.maHeThongRap === id;
+        })
+        let urlImg = arr.logo;
+
+        setUrl(urlImg);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
   let history = useHistory();
   useEffect(() => {
-    // var priceInit = props.price;
-    // const id = 16207,18745;
-    props.fetchDetailRoomTicket(40511);
+    props.fetchDetailRoomTicket(props.maLichChieu);
     if (localStorage.getItem("userHome")) {
       let info = JSON.parse(localStorage.getItem("userHome"));
       setInfo(info);
     }
+    { ShowLogoFilm(props.logoRap) }
   }, []);
 
   var giaTien;
@@ -74,8 +123,8 @@ function DetailTicketRoom(props) {
   let ListSeatNormal = () => {
     if (props.seat.danhSachGhe && props.seat.danhSachGhe.length > 0) {
       return props.seat.danhSachGhe.map((item, index) => {
-        if (item.loaiGhe == "Thuong" && index < 30) {
-          return <SeatNormal item={item} index={index} maLichChieu={40511} />
+        if (item.loaiGhe === "Thuong" && index < 30) {
+          return <SeatNormal item={item} index={index} maLichChieu={props.maLichChieu} />
         }
       })
     }
@@ -83,11 +132,11 @@ function DetailTicketRoom(props) {
   let ListSeatVip = () => {
     if (props.seat.danhSachGhe && props.seat.danhSachGhe.length > 0) {
       let arr = props.seat.danhSachGhe.filter((item) => {
-        return item.loaiGhe == "Vip";
+        return item.loaiGhe === "Vip";
       })
       return arr.map((item, index) => {
         if (index < 10) {
-          return <SeatVip item={item} index={index} maLichChieu={40511} />
+          return <SeatVip item={item} index={index} maLichChieu={props.maLichChieu} />
         }
       })
     }
@@ -120,11 +169,13 @@ function DetailTicketRoom(props) {
         if (props.bookGhe.danhSachVe.length > 0) {
           props.BookSeat(props.bookGhe);
           { saveInfo() }
+          { sendEmail() }
         }
         else {
           { alertAnimation() }
         }
       } else {
+
         history.push({ pathname: "/auth-home" });
       }
     } else {
@@ -170,8 +221,12 @@ function DetailTicketRoom(props) {
           }
         })
       }
+
     }, 1000);
   };
+  if (props.loading) {
+    return <Loading />
+  }
   return (
     <div>
       <section className="chooseSeat mr-0 row">
@@ -189,7 +244,7 @@ function DetailTicketRoom(props) {
             <div className="ml-5 infoRap">
               <div className="row  align-items-center justify-content-between ">
                 <div className="row">
-                  <img src="../images/bhd.png" className="img-fluid logoRap" />
+                  <LazyLoadImage src={url} className="img-fluid logoRap" />
                   <div className="mt-4 ml-2 thongTinRap">
                     <p className="mb-0 ">{props.seat.thongTinPhim ? props.seat.thongTinPhim.tenCumRap : ""}</p>
                     <span>{props.seat.thongTinPhim ? props.seat.thongTinPhim.ngayChieu : ""}</span> -
@@ -207,7 +262,7 @@ function DetailTicketRoom(props) {
                 </div>
               </div>
               <div className="chooseSeat__screen mt-2  mr-4  text-center">
-                <img src="../images/screen.png" alt="anh_manhinh" className="img-fluid ml-3 ml-lg-0" />
+                <LazyLoadImage src="../images/screen.jpg" alt="anh_manhinh" className="img-fluid ml-3 ml-lg-0" />
               </div>
             </div>
             <div className="bookGhe container text-center mx-auto">
@@ -252,8 +307,8 @@ function DetailTicketRoom(props) {
             </div>
             <hr style={{ marginRight: "10%" }} />
             <div className="infoCustomer mx-0">
-              <form>
-                <input type="email" placeholder="Your Email... " required id="email" />
+              <form  >
+                <input type="email" placeholder="Your Email... " required id="email" name="emaill" />
                 <hr style={{ marginRight: "10%" }} />
                 <input type="tel" placeholder="Your Phone Number .. " style={{ border: 'none' }} required id="phoneNumber" />
                 <hr style={{ marginRight: "10%" }} />
@@ -270,8 +325,8 @@ function DetailTicketRoom(props) {
                     <div className="row justify-content-around">
                       {/* Combo1:40.0000 VND */}
                       <div className="imgComboPopcornWater my-auto py-4">
-                        <img src="../images/water.png" style={{ marginTop: "-8px" }} alt="comboWater" />
-                        <img src="../images/popcorn.png" alt="comboPopcorn" />
+                        <LazyLoadImage src="../images/water.jpg" style={{ marginTop: "-8px" }} alt="comboWater" />
+                        <LazyLoadImage src="../images/popcorn.jpg" alt="comboPopcorn" />
                         <span className="mt-3">
                           <input type="number" max="10" min="0" id="combo1" value={combo.cb1} onChange={handleChangeNumberCombo} name="cb1" />
                         </span>
@@ -279,9 +334,9 @@ function DetailTicketRoom(props) {
                       </div>
                       {/* Combo2:55.000 VND */}
                       <div className="imgComboPopcornWater my-auto py-4">
-                        <img src="../images/water.png" style={{ marginTop: "-8px" }} alt="comboWater" />
-                        <img src="../images/water.png" style={{ marginTop: "-8px" }} alt="comboWater" />
-                        <img src="../images/popcorn.png" alt="comboPopcorn" />
+                        <LazyLoadImage src="../images/water.jpg" style={{ marginTop: "-8px" }} alt="comboWater" />
+                        <LazyLoadImage src="../images/water.jpg" style={{ marginTop: "-8px" }} alt="comboWater" />
+                        <LazyLoadImage src="../images/popcorn.jpg" alt="comboPopcorn" />
                         <span className="mt-3">
                           <input type="number" max="10" min="0" id="combo2" value={combo.cb2} onChange={handleChangeNumberCombo} name="cb2" />
                         </span>
@@ -289,10 +344,10 @@ function DetailTicketRoom(props) {
                       </div>
                       {/* Combo3:70.000 VND */}
                       <div className="imgComboPopcornWater my-auto py-4">
-                        <img src="../images/water.png" style={{ marginTop: "-8px" }} alt="comboWater" />
-                        <img src="../images/water.png" style={{ marginTop: "-8px" }} alt="comboWater" />
-                        <img src="../images/popcorn.png" alt="comboPopcorn" />
-                        <img src="../images/popcorn.png" alt="comboPopcorn" />
+                        <LazyLoadImage src="../images/water.jpg" style={{ marginTop: "-8px" }} alt="comboWater" />
+                        <LazyLoadImage src="../images/water.jpg" style={{ marginTop: "-8px" }} alt="comboWater" />
+                        <LazyLoadImage src="../images/popcorn.jpg" alt="comboPopcorn" />
+                        <LazyLoadImage src="../images/popcorn.jpg" alt="comboPopcorn" />
                         <span className="mt-3">
                           <input type="number" max="10" min="0" id="combo3" value={combo.cb3} onChange={handleChangeNumberCombo} name="cb3" />
                         </span>
@@ -305,13 +360,14 @@ function DetailTicketRoom(props) {
 
               <p className="mt-4 mb-0">Chọn thanh toán</p>
               <div>
-                <input type="radio" id="online" name="pay" defaultValue="Thanh toán bằng Momo" defaultChecked />
+                {/* <input type="radio" id="online" name="pay" defaultValue="Thanh toán bằng Momo" defaultChecked />
                 <label htmlFor="online">Với Momo</label>
-                <img src="../images/momo.jpg" /><br />
+                <LazyLoadImage src="../images/momo.jpg" /><br />
                 <input type="radio" id="tienmat" name="pay" defaultValue="Thanh toán bằng tiền mặt" />
                 <label htmlFor="tien mat">Tiền mặt</label>
-                <img src="../images/monney.png" className="ml-3" />
-                <br />
+                <LazyLoadImage src="../images/money.jpg" className="ml-3" />
+                <br /> */}
+                <PayPal dola={price} />
               </div>
             </div>
             <div className="end text-center pr-3">
@@ -324,7 +380,6 @@ function DetailTicketRoom(props) {
         </div>
       </section>
     </div >
-
   )
 }
 const mapStateToProps = state => {
@@ -333,7 +388,9 @@ const mapStateToProps = state => {
     err: state.roomTicketReducer.err,
     seat: state.roomTicketReducer.seat,
     bookGhe: state.bookGhe.bookGhe,
-    price: state.bookGhe.price
+    price: state.bookGhe.price,
+    maLichChieu: state.ShowTimeReducer.maLichChieu,
+    logoRap: state.ShowTimeReducer.maHeThongRap
   }
 }
 const mapDispatchToProps = dispatch => {
