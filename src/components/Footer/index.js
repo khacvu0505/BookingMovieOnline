@@ -3,17 +3,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
-export default function FooterHomePage(props) {
-
-  const [slick, setSlick] = useState({
+export default function FooterHomePage() {
+  const slick = {
     arrows: false,
     autoplay: true,
     infinite: true,
     autoplaySpeed: 2000,
     next: false,
-  })
+  };
   return (
     <div className="pt-5">
       <footer className="footer">
@@ -36,22 +35,47 @@ export default function FooterHomePage(props) {
               </div>
 
               <div className="intro__img col-lg-6 mt-5 mt-lg-0">
-                <LazyLoadImage src="./images/mobile.png" alt="img_mobie" className="img__mobile" />
+                <LazyLoadImage
+                  src="./images/mobile.png"
+                  alt="img_mobie"
+                  className="img__mobile"
+                />
 
                 <div className="img__app">
                   <Slider {...slick}>
-                    <LazyLoadImage src="./images/slide1.jpg" alt="img_slide1" className="img-fluid" />
-                    <LazyLoadImage src="./images/slide2.jpg" alt="img_slide2" className="img-fluid" />
-                    <LazyLoadImage src="./images/slide3.jpg" alt="img_slide3" className="img-fluid" />
-                    <LazyLoadImage src="./images/slide4.jpg" alt="img_slide4" className="img-fluid" />
-                    <LazyLoadImage src="./images/slide5.jpg" alt="img_slide5" className="img-fluid" />
-                    <LazyLoadImage src="./images/slide6.jpg" alt="img_slide6" className="img-fluid" />
+                    <LazyLoadImage
+                      src="./images/slide1.jpg"
+                      alt="img_slide1"
+                      className="img-fluid"
+                    />
+                    <LazyLoadImage
+                      src="./images/slide2.jpg"
+                      alt="img_slide2"
+                      className="img-fluid"
+                    />
+                    <LazyLoadImage
+                      src="./images/slide3.jpg"
+                      alt="img_slide3"
+                      className="img-fluid"
+                    />
+                    <LazyLoadImage
+                      src="./images/slide4.jpg"
+                      alt="img_slide4"
+                      className="img-fluid"
+                    />
+                    <LazyLoadImage
+                      src="./images/slide5.jpg"
+                      alt="img_slide5"
+                      className="img-fluid"
+                    />
+                    <LazyLoadImage
+                      src="./images/slide6.jpg"
+                      alt="img_slide6"
+                      className="img-fluid"
+                    />
                   </Slider>
                 </div>
-
               </div>
-
-
             </div>
           </div>
         </div>
@@ -252,7 +276,11 @@ export default function FooterHomePage(props) {
                     </Link>
                   </div>
                   <div className="col">
-                    <Link href="https://zalopay.vn" title="zalo" target="_blank">
+                    <Link
+                      href="https://zalopay.vn"
+                      title="zalo"
+                      target="_blank"
+                    >
                       {" "}
                       <LazyLoadImage
                         src="./images/zalopay_icon.png"
