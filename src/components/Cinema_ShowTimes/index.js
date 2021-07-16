@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import GroupCinemaShowTime from "../GroupCinema_ShowTime";
 import { actFetchListCinemaShowTime } from "../ShowTimes/module/action";
 
-function CinemaShowTime({ maHeThongRap, fetchListCinema, listCinema }) {
-  const [maHTRap, setMaHTRap] = useState("BHDStar");
-  useEffect(() => {
-    // console.log("eff");
-    fetchListCinema(maHeThongRap);
-  }, [maHTRap]);
+function CinemaShowTime({ maHeThongRap, listCinema }) {
+  // const [maHTRap, setMaHTRap] = useState("BHDStar");
+  // useEffect(() => {
+  //   // console.log("eff");
+  //   fetchListCinema(maHeThongRap);
+  // }, [maHTRap]);
 
-  useEffect(() => {
-    setMaHTRap(maHeThongRap);
-  });
+  // useEffect(() => {
+  //   setMaHTRap(maHeThongRap);
+  // });
   const renderGroupCinema = () => {
     if (listCinema && listCinema.length > 0) {
       // console.log(props.listCinema);
