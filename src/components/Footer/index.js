@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -29,8 +29,14 @@ export default function FooterHomePage() {
                 <br />
                 <span>
                   {" "}
-                  Fox có 2 phiên bản <Link href="#">iOS</Link> và{" "}
-                  <Link href="#">Android</Link>
+                  Fox có 2 phiên bản{" "}
+                  <Link to="#" href="#">
+                    iOS
+                  </Link>{" "}
+                  và{" "}
+                  <Link to="#" href="#">
+                    Android
+                  </Link>
                 </span>
               </div>
 
@@ -86,16 +92,24 @@ export default function FooterHomePage() {
                 <h4>FOX MOVIE</h4>
                 <p>
                   {" "}
-                  <Link href="#">FAQ</Link>{" "}
+                  <Link to="#" href="#">
+                    FAQ
+                  </Link>{" "}
                   <span>
-                    <Link href="#">Thỏa thuận sử dụng</Link>
+                    <Link to="#" href="#">
+                      Thỏa thuận sử dụng
+                    </Link>
                   </span>{" "}
                 </p>
                 <p>
-                  <Link href="#">Brand Guidelines</Link>{" "}
+                  <Link to="#" href="#">
+                    Brand Guidelines
+                  </Link>{" "}
                   <span>
                     {" "}
-                    <Link href="#">Chính sách bảo mật</Link>{" "}
+                    <Link to="#" href="#">
+                      Chính sách bảo mật
+                    </Link>{" "}
                   </span>
                 </p>
               </div>
@@ -103,7 +117,12 @@ export default function FooterHomePage() {
                 <h4>ĐỐI TÁC</h4>
                 <div className="row pb-2">
                   <div className="col">
-                    <Link href="https://www.cgv.vn" title="cgv" target="_blank">
+                    <Link
+                      to="#"
+                      href="https://www.cgv.vn"
+                      title="cgv"
+                      target="_blank"
+                    >
                       <LazyLoadImage
                         src="./images/cgv.png"
                         alt="cgv"
@@ -113,6 +132,7 @@ export default function FooterHomePage() {
                   </div>
                   <div className="col ">
                     <Link
+                      to="#"
                       href="https://www.bhdstar.vn"
                       title="bdh"
                       target="_blank"
@@ -127,6 +147,7 @@ export default function FooterHomePage() {
                   </div>
                   <div className="col ">
                     <Link
+                      to="#"
                       href="https://www.galaxycine.vn"
                       title="galaxy"
                       target="_blank"
@@ -141,6 +162,7 @@ export default function FooterHomePage() {
                   </div>
                   <div className="col">
                     <Link
+                      to="#"
                       href="http://cinestar.com.vn"
                       title="cinestar"
                       target="_blank"
@@ -154,6 +176,7 @@ export default function FooterHomePage() {
                   </div>
                   <div className="col ">
                     <Link
+                      to="#"
                       href="https://www.megagscinemas.vn"
                       title="megags"
                       target="_blank"
@@ -169,6 +192,7 @@ export default function FooterHomePage() {
                 <div className="row pb-2">
                   <div className="col">
                     <Link
+                      to="#"
                       href="https://www.betacineplex.vn/home.htm"
                       title="beta"
                       target="_blank"
@@ -181,12 +205,18 @@ export default function FooterHomePage() {
                     </Link>
                   </div>
                   <Link
+                    to="#"
                     href="https://www.betacineplex.vn/home.htm"
                     title="beta"
                     target="_blank"
                   ></Link>
                   <div className="col">
-                    <Link href="http://ddcinema.vn" title="ddc" target="_blank">
+                    <Link
+                      to="#"
+                      href="http://ddcinema.vn"
+                      title="ddc"
+                      target="_blank"
+                    >
                       <LazyLoadImage
                         src="./images/dongdacinema.png"
                         alt="ddc"
@@ -196,6 +226,7 @@ export default function FooterHomePage() {
                   </div>
                   <div className="col">
                     <Link
+                      to="#"
                       href="https://touchcinema.com"
                       title="touch"
                       target="_blank"
@@ -209,6 +240,7 @@ export default function FooterHomePage() {
                   </div>
                   <div className="col">
                     <Link
+                      to="#"
                       href="https://cinemaxvn.com"
                       title="cinemax"
                       target="_blank"
@@ -222,6 +254,7 @@ export default function FooterHomePage() {
                   </div>
                   <div className="col">
                     <Link
+                      to="#"
                       href="https://starlight.vn"
                       title="starlight"
                       target="_blank"
@@ -238,6 +271,7 @@ export default function FooterHomePage() {
                 <div className="row pb-2">
                   <div className="col">
                     <Link
+                      to="#"
                       href="https://www.dcine.vn"
                       title="dcine"
                       target="_blank"
@@ -251,6 +285,7 @@ export default function FooterHomePage() {
                   </div>
                   <div className="col">
                     <Link
+                      to="#"
                       href="http://lottecinemavn.com/LCHS/index.aspx"
                       title="lotte"
                       target="_blank"
@@ -264,6 +299,7 @@ export default function FooterHomePage() {
                   </div>
                   <div className="col">
                     <Link
+                      to="#"
                       href="https://www.payoo.vn"
                       title="payoo"
                       target="_blank"
@@ -277,6 +313,7 @@ export default function FooterHomePage() {
                   </div>
                   <div className="col">
                     <Link
+                      to="#"
                       href="https://zalopay.vn"
                       title="zalo"
                       target="_blank"
@@ -291,6 +328,7 @@ export default function FooterHomePage() {
                   </div>
                   <div className="col">
                     <Link
+                      to="#"
                       href="https://www.agribank.com.vn"
                       title="agribank"
                       target="_blank"
@@ -306,6 +344,7 @@ export default function FooterHomePage() {
                 <div className="row">
                   <div className="col">
                     <Link
+                      to="#"
                       href="https://portal.vietcombank.com.vn/Pages/Home.aspx"
                       title="vietcombank"
                       target="_blank"
@@ -319,6 +358,7 @@ export default function FooterHomePage() {
                   </div>
                   <div className="col">
                     <Link
+                      to="#"
                       href="https://www.vietinbank.vn/web/home/vn/index.html"
                       title="viettinbank"
                       target="_blank"
@@ -332,6 +372,7 @@ export default function FooterHomePage() {
                   </div>
                   <div className="col">
                     <Link
+                      to="#"
                       href="https://www.indovinabank.com.vn"
                       title="IVB"
                       target="_blank"
@@ -345,6 +386,7 @@ export default function FooterHomePage() {
                   </div>
                   <div className="col">
                     <Link
+                      to="#"
                       href="https://webv3.123go.vn"
                       title="123go"
                       target="_blank"
@@ -357,7 +399,12 @@ export default function FooterHomePage() {
                     </Link>
                   </div>
                   <div className="col">
-                    <Link href="https://laban.vn" title="laban" target="_blank">
+                    <Link
+                      to="#"
+                      href="https://laban.vn"
+                      title="laban"
+                      target="_blank"
+                    >
                       <LazyLoadImage
                         src="./images/laban.png"
                         alt="laban"
@@ -369,16 +416,16 @@ export default function FooterHomePage() {
               </div>
               <div className="col-md-4">
                 <h4 className="pt-3 pt-md-0">SOCIAL</h4>
-                <Link href="#" title="facebook">
+                <Link to="#" href="#" title="facebook">
                   <i className="fab fa-facebook pl-0" />
                 </Link>
-                <Link href="#" title="instagram">
+                <Link to="#" href="#" title="instagram">
                   <i className="fab fa-instagram" />
                 </Link>
-                <Link href="#" title="twitter">
+                <Link to="#" href="#" title="twitter">
                   <i className="fab fa-twitter" />
                 </Link>
-                <Link href="#" title="pinterest">
+                <Link to="#" href="#" title="pinterest">
                   <i className="fab fa-pinterest" />
                 </Link>
               </div>
@@ -397,11 +444,15 @@ export default function FooterHomePage() {
                 </p>
                 <p>Số Điện Thoại (Hotline): 1900 545 436</p>
                 <p>
-                  Email: <Link href="#">support@tix.vn</Link>
+                  Email:{" "}
+                  <Link to="#" href="#">
+                    support@tix.vn
+                  </Link>
                 </p>
               </div>
               <div className="col-md-4 text-center mt-5">
                 <Link
+                  to="#"
                   href="http://online.gov.vn/Home/WebDetails/62782"
                   target="_blank"
                 >
