@@ -3,13 +3,13 @@ import TimeFilm_ShowTimes from "../TimeFilm_ShowTimes";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function DetailFilmShowTime(props) {
-  // const renderTimeFilmDetail = () => {
-  //   return props.Film.arrTime.map((item, index) => {
-  //     if (index <= 5) {
-  //       return <TimeFilm_ShowTimes key={item.maLichChieu} Time={item} />;
-  //     }
-  //   });
-  // };
+  const renderTimeFilmDetail = () => {
+    return props.Film.arrTime.map((item, index) => {
+      if (index <= 5) {
+        return <TimeFilm_ShowTimes key={item.maLichChieu} Time={item} />;
+      }
+    });
+  };
   return (
     <div>
       <div className="lichChieu__item">
@@ -30,7 +30,7 @@ export default function DetailFilmShowTime(props) {
           </div>
         </div>
         <h4>2D Digital</h4>
-        {/* <div className="row">{renderTimeFilmDetail()}</div> */}
+        <div className="row">{renderTimeFilmDetail()}</div>
       </div>
     </div>
   );
