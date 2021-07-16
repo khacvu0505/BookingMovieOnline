@@ -112,9 +112,7 @@ function NavbarUser() {
                   id="lg"
                 >
                   <NavLink to="/auth-home">
-                    {login === "Đăng nhập"
-                      ? "Đăng nhập"
-                      : "Xin chào, " + ` ${login}`}
+                    {login === "Đăng nhập" ? "Đăng nhập" : `Xin chào ${login}`}
                   </NavLink>
                   {/* <a className="nav-link" href="#"><i className="fa fa-user" /> Đăng nhập</a> */}
                   <div
