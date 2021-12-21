@@ -3,7 +3,8 @@ import { Route, Redirect } from "react-router-dom";
 import NavbarUser from "./../components/Navbar";
 
 function HomeLayout(props) {
-  if (props.children.props.location.pathname === "/detail-ticketroom") {
+  console.log(props);
+  if (props.children?.props?.location?.pathname === "/detail-ticketroom") {
     return <div>{props.children}</div>;
   } else {
     return (
